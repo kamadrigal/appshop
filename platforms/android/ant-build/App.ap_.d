@@ -1,0 +1,25 @@
+/home/karla/appshop/platforms/android/ant-build/App.ap_ \
+ : /home/karla/appshop/platforms/android/res/drawable-ldpi/icon.png \
+/home/karla/appshop/platforms/android/res/drawable-xhdpi/icon.png \
+/home/karla/appshop/platforms/android/res/drawable-hdpi/icon.png \
+/home/karla/appshop/platforms/android/res/xml/config.xml \
+/home/karla/appshop/platforms/android/res/drawable-mdpi/icon.png \
+/home/karla/appshop/platforms/android/res/values/strings.xml \
+/home/karla/appshop/platforms/android/res/drawable/icon.png \
+/home/karla/appshop/platforms/android/ant-build/res/drawable-ldpi/icon.png \
+/home/karla/appshop/platforms/android/ant-build/res/drawable-xhdpi/icon.png \
+/home/karla/appshop/platforms/android/ant-build/res/drawable-hdpi/icon.png \
+/home/karla/appshop/platforms/android/ant-build/res/drawable-mdpi/icon.png \
+/home/karla/appshop/platforms/android/ant-build/res/drawable/icon.png \
+/home/karla/appshop/platforms/android/assets/www \
+/home/karla/appshop/platforms/android/assets/_where-is-www.txt \
+/home/karla/appshop/platforms/android/assets/www/cordova.js \
+/home/karla/appshop/platforms/android/assets/www/index.html \
+/home/karla/appshop/platforms/android/assets/www/cordova_plugins.js \
+/home/karla/appshop/platforms/android/assets/www/img \
+/home/karla/appshop/platforms/android/assets/www/css \
+/home/karla/appshop/platforms/android/assets/www/js \
+/home/karla/appshop/platforms/android/assets/www/img/logo.png \
+/home/karla/appshop/platforms/android/assets/www/css/index.css \
+/home/karla/appshop/platforms/android/assets/www/js/index.js \
+/home/karla/appshop/platforms/android/ant-build/AndroidManifest.xml \
