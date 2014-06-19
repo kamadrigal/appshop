@@ -1,4 +1,7 @@
 /home/karla/appshop/platforms/android/ant-build/classes.dex : \
+/home/karla/appshop/platforms/android/ant-build/classes/org/apache/cordova/camera/CameraLauncher.class \
+/home/karla/appshop/platforms/android/ant-build/classes/org/apache/cordova/camera/FileHelper.class \
+/home/karla/appshop/platforms/android/ant-build/classes/org/apache/cordova/camera/ExifHelper.class \
 /home/karla/appshop/platforms/android/ant-build/classes/cr/tec/diseno/BuildConfig.class \
 /home/karla/appshop/platforms/android/ant-build/classes/cr/tec/diseno/R$string.class \
 /home/karla/appshop/platforms/android/ant-build/classes/cr/tec/diseno/R$attr.class \
