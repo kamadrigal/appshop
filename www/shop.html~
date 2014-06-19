@@ -83,15 +83,14 @@
               <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
             </div><!--/span-->
           </div><!--/row-->
-	<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+        </div><!--/span-->
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
           <div class="jumbotron">
 	    <h2>Cliente</h2>
             <p>Producto 1 </p>
           </div>
         </div><!--/span-->
-        </div><!--/span-->
-
-        
       </div><!--/row-->
 
       <hr>

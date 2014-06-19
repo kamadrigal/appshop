@@ -20,28 +20,14 @@
 <body>
     <div class="container">
 
-      <form class="form" role="form">
-        <h2 class="form">Registro</h2>
-        <div class="form-group"> 
-	  <input type="name" class="form-control" placeholder="Nombre" required>
-	</div>
-        <div class="form-group"> 
-	  <input type="lastname" class="form-control" placeholder="Apellido" required>
-	</div>
-	<div class="form-group"> 
-	  <input type="email" class="form-control" placeholder="Correo electrónico" required>
-	</div>
-        <div class="form-group"> 
-	  <input type="password" class="form-control" placeholder="Contrasena" required>
-	</div>
-	<div class="form-group"> 
-	  <input type="telephone" class="form-control" placeholder="Teléfono" required>
-	</div>
-        <div class="form-group"> 
-	  <input type="adress" class="form-control" placeholder="Dirección" required>
-	</div>
-        
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
+      <form class="form-signin" role="form">
+        <h2 class="form-signin-heading">TECCloud-POS</h2>
+        <input type="email" class="form-control" placeholder="Email address" required autofocus>
+        <input type="password" class="form-control" placeholder="Password" required>
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
 
     </div> <!-- /container -->
