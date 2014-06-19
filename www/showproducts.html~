@@ -32,6 +32,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Inicio</a></li>
+            <li><a href="#about">Añadir</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -49,7 +50,7 @@
             <h1>TECCloud-POS</h1>
             <p>Catálogo de ropa</p>
           </div>
-          <div class="row">
+          <div class="container">
             <div class="col-6 col-sm-6 col-lg-4">
               <h2>Producto 1</h2>
               <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
