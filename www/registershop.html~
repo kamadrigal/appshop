@@ -22,10 +22,18 @@
 
       <form class="form" role="form">
         <h2 class="form">Registro de tienda</h2>
-        <div> <input type="name" class="form-control" placeholder="Nombre" required></div>
-        <div> <input type="adress" class="form-control" placeholder="Ubicación" required></div>
-	<div> <input type="telephone" class="form-control" placeholder="Teléfono" required></div>
-        <div> <input type="password" class="form-control" placeholder="Contrasena" required></div>
+        <div class="form-group"> 
+	  <input type="name" class="form-control" placeholder="Nombre" required>
+	</div>
+        <div class="form-group"> 
+	  <input type="adress" class="form-control" placeholder="Ubicación" required>
+	</div>
+	<div class="form-group"> 
+	  <input type="telephone" class="form-control" placeholder="Teléfono" required>
+	</div>
+        <div class="form-group"> 
+	  <input type="password" class="form-control" placeholder="Contrasena" required>
+	</div>
 	
         
         <button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>

@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
-    <title>My Minifigure App</title>
+    <title>TECCloud-POS App</title>
 	<!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="css/reset.css">
@@ -22,12 +22,14 @@
 
       <form class="form-signin" role="form">
         <h2 class="form-signin-heading">TECCloud-POS</h2>
-        <input type="email" class="form-control" placeholder="Correo electrónico" required autofocus>
-        <input type="password" class="form-control" placeholder="Contrasena" required>
+        <input id="emails" class="form-control" placeholder="Correo electrónico"> </input>
+        <input id= "pass" type="password" class="form-control" placeholder="Contrasena"> </input>
         <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Tienda
+          <input id='myCheckbox' type="checkbox"> Tienda
         </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesión</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick='iniciar();'>Iniciar Sesión</button>
+	<button class="btn btn-lg btn-primary btn-block" type="submit" onclick='registrar();'>Registrarse</button>
+	<label id='mensaje'> </label>
       </form>
 
     </div> <!-- /container -->
@@ -39,6 +41,91 @@
  
   <script type="text/javascript">
     Parse.initialize("RMuozbhB3lnNorUhxDk6ViyxfI5JWlZf2JscUHpZ", "ry3g6ToqTzkhAJVGMNSbFoLtYFy7nBZVvBKr5idC");
+    
+    var Usuarios = Parse.Object.extend("Usuario");
+    var querys = new Parse.Query(Usuarios);
+    function iniciar() {
+	var checkbox = document.getElementById ("myCheckbox");
+      	if(checkbox.checked){
+          var Tienda = Parse.Object.extend("Tienda");
+	  var query = new Parse.Query(Tienda);
+	  query.find({
+ 	    success: function(result) {
+              var estado = true;
+              var emailcomp = document.getElementById('emails').value;
+              var passwdcomp = document.getElementById('pass').value;
+              for (var j = 0; j < result.length; j++) {
+		var object = result[j];
+                var email = object.get('nombre');
+                var passwd = object.get('contrasena');
+		if(email == emailcomp){
+		  if(contrasena == passwdcomp){
+                    alert('encontrado');
+                    //location.href="showproducts.html";
+                  }
+ 		  else{
+                    var container = document.getElementById("mensaje");
+                    container.appendChild('La contraseña es errónea');
+
+                    estado = false;
+		    break;
+                  }
+                }
+              }
+              if(estado){
+	        var container = document.getElementById("mensaje");
+                container.appendChild('La tienda no exite, registrela ahora');
+              }
+	    },
+            error: function(error) {
+              $(".error").show();
+ 	    }
+          }); 
+    		
+	}
+	else{
+          
+	  querys.find({
+ 	    success: function(result) {
+              alert('entro');
+              var estado = true;
+              var emailcomp = document.getElementById('emails').value;
+              var passwdcomp = document.getElementById('pass').value;
+              for (var j = 0; j < result.length; j++) {
+		var object = result[j];
+                var email = object.get('email');
+                alert(email);
+                var passwd = object.get('contrasena');
+		if(email == emailcomp){
+		  if(contrasena == passwdcomp){
+                    alert('encontrado');//location.href="shop.html";
+                  }
+ 		  else{
+                    alert('La contraseña es errónea');
+                    estado = false;
+		    break;
+                  }
+                }
+              }
+              if(estado){
+                alert('El usuario no exite, registrese ahora');
+              }
+	    },
+            error: function(error) {
+              $(".error").show();
+ 	    }
+          });
+	}
+     }
+    function registrar() {
+	var checkbox = document.getElementById ("myCheckbox");
+      	if(checkbox.checked){
+    		location.href="registershop.html";
+	}
+	else{
+		location.href="registerclient.html";
+	}
+     }	
   </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->

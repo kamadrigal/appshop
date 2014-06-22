@@ -21,20 +21,25 @@
     <div class="container">
 
       <form class="form" role="form">
-        <h2 class="form">Registro de tienda</h2>
+        <h2 class="form">Registro</h2>
         <div class="form-group"> 
 	  <input type="name" class="form-control" placeholder="Nombre" required>
 	</div>
         <div class="form-group"> 
-	  <input type="adress" class="form-control" placeholder="Ubicación" required>
+	  <input type="lastname" class="form-control" placeholder="Apellido" required>
+	</div>
+	<div class="form-group"> 
+	  <input type="email" class="form-control" placeholder="Correo electrónico" required>
+	</div>
+        <div class="form-group"> 
+	  <input type="password" class="form-control" placeholder="Contrasena" required>
 	</div>
 	<div class="form-group"> 
 	  <input type="telephone" class="form-control" placeholder="Teléfono" required>
 	</div>
         <div class="form-group"> 
-	  <input type="password" class="form-control" placeholder="Contrasena" required>
+	  <input type="adress" class="form-control" placeholder="Dirección" required>
 	</div>
-	
         
         <button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
       </form>
@@ -48,8 +53,8 @@
  
   <script type="text/javascript">
     Parse.initialize("RMuozbhB3lnNorUhxDk6ViyxfI5JWlZf2JscUHpZ", "ry3g6ToqTzkhAJVGMNSbFoLtYFy7nBZVvBKr5idC");
-    var Tienda = Parse.Object.extend("Tienda"); 
-    var tienda = new Tienda();
+    var Usuario = Parse.Object.extend("Usuario"); 
+    var usuario = new Usuario();
   </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
