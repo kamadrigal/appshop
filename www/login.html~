@@ -20,18 +20,31 @@
 <body>
     <div class="container">
 
-      <form class="form-signin" role="form">
-        <h2 class="form-signin-heading">TECCloud-POS</h2>
-        <input id="emails" class="form-control" placeholder="Correo electrónico"> </input>
-        <input id= "pass" type="password" class="form-control" placeholder="Contrasena"> </input>
-        <label class="checkbox">
-          <input id='myCheckbox' type="checkbox"> Tienda
-        </label>
+      <form class="form">
+        <h2 class="form">TECCloud-POS</h2>
+        <div class="form-group">
+          <input id="emails" type='text' class="form-control" placeholder="Correo electrónico" required autofocus> </input>
+        </div>
+        <div class="form-group">
+          <input id= "pass" type="password" class="form-control" placeholder="Contrasena" required autofocus> </input>
+        </div>
+        <div class="form-group">
+          <label class="checkbox">
+            <input id='myCheckbox' type="checkbox"> Tienda </input>
+          </label>
+        </div>
+      </form>  
+      
+      <div class="form-group">
         <button class="btn btn-lg btn-primary btn-block" type="submit" onclick='iniciar();'>Iniciar Sesión</button>
-	<button class="btn btn-lg btn-primary btn-block" type="submit" onclick='registrar();'>Registrarse</button>
-	<label id='mensaje'> </label>
-      </form>
-
+      </div>
+      <div class="form-group">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick='registrar();'>Registrarse</button>
+      </div>
+      <div class="form-group">
+        <label id='mensaje'> </label>
+      </div>
+    
     </div> <!-- /container -->
 
 
@@ -42,8 +55,6 @@
   <script type="text/javascript">
     Parse.initialize("RMuozbhB3lnNorUhxDk6ViyxfI5JWlZf2JscUHpZ", "ry3g6ToqTzkhAJVGMNSbFoLtYFy7nBZVvBKr5idC");
     
-    var Usuarios = Parse.Object.extend("Usuario");
-    var querys = new Parse.Query(Usuarios);
     function iniciar() {
 	var checkbox = document.getElementById ("myCheckbox");
       	if(checkbox.checked){
@@ -59,7 +70,7 @@
                 var email = object.get('nombre');
                 var passwd = object.get('contrasena');
 		if(email == emailcomp){
-		  if(contrasena == passwdcomp){
+		  if(passwd == passwdcomp){
                     alert('encontrado');
                     //location.href="showproducts.html";
                   }
@@ -72,9 +83,14 @@
                   }
                 }
               }
-              if(estado){
-	        var container = document.getElementById("mensaje");
-                container.appendChild('La tienda no exite, registrela ahora');
+              if(estado=="noshop"){
+                alert('La tienda no exite, registrese ahora');
+              }
+              else if (estado == "encontrado"){
+                location.href="showproducts.html";
+              }
+              else {
+                alert("La contraseña no válida");
               }
 	    },
             error: function(error) {
@@ -84,31 +100,38 @@
     		
 	}
 	else{
-          
+          var Usuarios = Parse.Object.extend("Usuario");
+          var querys = new Parse.Query(Usuarios);
 	  querys.find({
  	    success: function(result) {
-              alert('entro');
-              var estado = true;
+              //alert('entro');
+              var estado = "nouser";
               var emailcomp = document.getElementById('emails').value;
               var passwdcomp = document.getElementById('pass').value;
               for (var j = 0; j < result.length; j++) {
 		var object = result[j];
                 var email = object.get('email');
-                alert(email);
+                //alert(emailcomp);
                 var passwd = object.get('contrasena');
 		if(email == emailcomp){
-		  if(contrasena == passwdcomp){
-                    alert('encontrado');//location.href="shop.html";
+                  alert(emailcomp);
+		  if(passwd == passwdcomp){
+                    estado="encontrado";
+                    alert(estado);
                   }
  		  else{
-                    alert('La contraseña es errónea');
-                    estado = false;
-		    break;
+                    estado = "malpasswd";
                   }
                 }
               }
-              if(estado){
+              if(estado=="nouser"){
                 alert('El usuario no exite, registrese ahora');
+              }
+              else if (estado == "encontrado"){
+                location.href="shop.html";
+              }
+              else {
+                alert("La contraseña no válida");
               }
 	    },
             error: function(error) {

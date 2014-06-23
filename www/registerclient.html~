@@ -40,11 +40,10 @@
         <div class="form-group"> 
 	  <input id="adress" class="form-control" type="text" placeholder="Dirección" required autofocus> </input>
 	</div>
-        <div class="form-group">
-          <button onclick='guardar();' class="btn btn-lg btn-primary btn-block" type="default" required autofocus>Registrar</button>
-        </div>
       </form>
-
+      <div class="form-group">
+        <button onclick='guardar();' class="btn btn-lg btn-primary btn-block" type="default" required autofocus>Registrar</button>
+      </div>
     </div> <!-- /container -->
 
 

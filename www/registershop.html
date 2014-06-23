@@ -7,9 +7,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
-    <title>My Minifigure App</title>
+    <title>TECCloud-POS App</title>
 	<!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">-->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -20,23 +20,23 @@
 <body>
     <div class="container">
 
-      <form class="form" role="form">
+      <form class="form">
         <h2 class="form">Registro de tienda</h2>
         <div class="form-group"> 
-	  <input type="name" class="form-control" placeholder="Nombre" required>
+	  <input id="name" class="form-control" placeholder="Nombre" required autofocus> </input>
 	</div>
         <div class="form-group"> 
-	  <input type="adress" class="form-control" placeholder="Ubicación" required>
+	  <input id="adress" class="form-control" placeholder="Ubicación" required autofocus> </input>
 	</div>
 	<div class="form-group"> 
-	  <input type="telephone" class="form-control" placeholder="Teléfono" required>
+	  <input id="telephone" class="form-control" placeholder="Teléfono" required autofocus> </input>
 	</div>
         <div class="form-group"> 
-	  <input type="password" class="form-control" placeholder="Contrasena" required>
+	  <input id="password" class="form-control" placeholder="Contrasena" required autofocus> </input>
 	</div>
       </form>
       <div class="form-group">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
+        <button onclick='guardar();' class="btn btn-lg btn-primary btn-block" type="default" required autofocus>Registrar</button>
       </div>
     </div> <!-- /container -->
 
@@ -52,13 +52,14 @@
             var Tienda = Parse.Object.extend("Tienda"); 
             var tienda = new Tienda();
 	    tienda.set('nombre', document.getElementById('name').value);
-            tienda.set('direccion', document.getElementById('adress').value);
+            tienda.set('ubicacion', document.getElementById('adress').value);
             tienda.set('telefono', document.getElementById('telephone').value);
 	    tienda.set('contrasena', document.getElementById('password').value);    
 	    tienda.save(null, {
 		  success: function(shop) {
 		    // Execute any logic that should take place after the object is saved.
 		    alert('New object created with objectId: ' + shop.id);
+                    href.location="showproducts.html";
 		  },
 		  error: function(shop, error) {
 		    // Execute any logic that should take place if the save fails.
@@ -66,7 +67,7 @@
 		    alert('Failed to create new object, with error code: ' + error.description);
 		  }
 		});
-            href.location="showproducts.html";
+            
     }
   </script>
   </script>
@@ -74,7 +75,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
      <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script src="assets/js/docs.min.js"></script>
 </body>
