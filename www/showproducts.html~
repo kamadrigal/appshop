@@ -54,32 +54,32 @@
             <div class="col-6 col-sm-6 col-lg-4">
               <h2>Producto 1</h2>
               <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+              <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
               <h2>Producto 2</h2>
               <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+              <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
               <h2>Producto 3</h2>
               <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+              <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
               <h2>Producto 4</h2>
               <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+              <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
               <h2>Producto 5</h2>
               <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+              <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
               <h2>Producto 6</h2>
               <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+              <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
             </div><!--/span-->
           </div><!--/row-->
         </div><!--/span-->

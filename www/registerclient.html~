@@ -7,9 +7,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
-    <title>My Minifigure App</title>
+    <title>TECCloud-POS App</title>
 	<!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">-->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -20,28 +20,29 @@
 <body>
     <div class="container">
 
-      <form class="form" role="form">
+      <form class="form">
         <h2 class="form">Registro</h2>
         <div class="form-group"> 
-	  <input type="name" class="form-control" placeholder="Nombre" required>
+	  <input id="name" class="form-control" type="text" placeholder="Nombre" required autofocus> </input>
 	</div>
         <div class="form-group"> 
-	  <input type="lastname" class="form-control" placeholder="Apellido" required>
+	  <input id="lastname" class="form-control" type="text" placeholder="Apellido" required autofocus> </input>
 	</div>
 	<div class="form-group"> 
-	  <input type="email" class="form-control" placeholder="Correo electrónico" required>
+	  <input id="email" class="form-control" type="text" placeholder="Correo electrónico" required autofocus> </input>
 	</div>
         <div class="form-group"> 
-	  <input type="password" class="form-control" placeholder="Contrasena" required>
+	  <input id="password" class="form-control" type="text" placeholder="Contrasena" required autofocus> </input>
 	</div>
 	<div class="form-group"> 
-	  <input type="telephone" class="form-control" placeholder="Teléfono" required>
+	  <input id="telephone" class="form-control" type="text" placeholder="Teléfono" required autofocus> </input>
 	</div>
         <div class="form-group"> 
-	  <input type="adress" class="form-control" placeholder="Dirección" required>
+	  <input id="adress" class="form-control" type="text" placeholder="Dirección" required autofocus> </input>
 	</div>
-        
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
+        <div class="form-group">
+          <button onclick='guardar();' class="btn btn-lg btn-primary btn-block" type="default" required autofocus>Registrar</button>
+        </div>
       </form>
 
     </div> <!-- /container -->
@@ -53,12 +54,35 @@
  
   <script type="text/javascript">
     Parse.initialize("RMuozbhB3lnNorUhxDk6ViyxfI5JWlZf2JscUHpZ", "ry3g6ToqTzkhAJVGMNSbFoLtYFy7nBZVvBKr5idC");
+    
+    function guardar(){
+            var Usuario = Parse.Object.extend("Usuario"); 
+            var usuario = new Usuario();
+	    usuario.set('nombre', document.getElementById('name').value);
+	    usuario.set('apellido', document.getElementById('lastname').value);
+	    usuario.set('email', document.getElementById('email').value);
+	    usuario.set('contrasena', document.getElementById('password').value);    
+	    usuario.set('telefono', document.getElementById('telephone').value);
+	    usuario.set('direccion', document.getElementById('adress').value);
+	    usuario.save(null, {
+		  success: function(user) {
+		    // Execute any logic that should take place after the object is saved.
+		    alert('New object created with objectId: ' + user.id);
+		  },
+		  error: function(user, error) {
+		    // Execute any logic that should take place if the save fails.
+		    // error is a Parse.Error with an error code and description.
+		    alert('Failed to create new object, with error code: ' + error.description);
+		  }
+		});
+    }
   </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script src="assets/js/docs.min.js"></script>
 </body>
 
