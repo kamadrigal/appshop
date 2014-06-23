@@ -1,0 +1,129 @@
+<!doctype html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <title>My Minifigure App</title>
+	<!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+    <link href="css/offcanvas.css" rel="stylesheet">
+</head>
+
+<body>
+     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">TECCloud-POS</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Inicio</a></li>
+            <li><a href="#about">Cuentas</a></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
+
+    <div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h1>TECCloud-POS</h1>
+            <p>Catálogo de ropa</p>
+          </div>
+          
+          <div class="row" id="productos">
+ 
+          </div><!--/row-->
+          
+        </div><!--/span-->
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="jumbotron">
+	    <h2>Carrito</h2>
+            <p>Producto 1 </p>
+            <p>Producto 3 </p>
+            <p>Producto 5 </p>
+            <p>Producto 6 </p>
+          </div>
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; AppShop 2014</p>
+      </footer>
+
+    </div><!--/.container-->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+ 
+  <script type="text/javascript">
+    Parse.initialize("RMuozbhB3lnNorUhxDk6ViyxfI5JWlZf2JscUHpZ", "ry3g6ToqTzkhAJVGMNSbFoLtYFy7nBZVvBKr5idC");
+
+    var sPageURL = location.search.substring(1);
+    var sParameterName = sPageURL.split('=');
+    var usuario = sParameterName[1];
+
+    var Producto = Parse.Object.extend("Producto");
+    var container = document.getElementById("productos");
+    var query = new Parse.Query(Producto);
+	query.find({
+ 	success: function(results) {
+    // Do something with the returned Parse.Object values
+		
+    		for (var i = 0; i < results.length; i++) {
+			var object = results[i];
+			var newdiv = document.createElement('div');
+			
+			newdiv.innerHTML = '<div class="col-6 col-sm-6 col-lg-4">'+
+                                             '<h2>'+object.get('nombre')+'</h2>'+
+                                             '<img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image" src="'+object.get('imagenprueba').url()+'"></img>'+
+                                             '<p><a class="btn btn-primary" role="button" href="showproductclient.html?key='+object.id+','+usuario+'">Ver más &raquo;</a></p>'+
+                                           '</div><!--/span-->';
+			container.appendChild(newdiv);
+			
+    		}
+		
+		
+  	},
+
+ 	 error: function(error) {
+    // error is an instance of Parse.Error.
+	$(".error").show();
+ 	 }
+    }); 
+
+  </script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script src="assets/js/docs.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <title>My Minifigure App</title>
+	<!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+    <link href="css/signin.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+
+      <form class="form" role="form">
+        <h2 class="form">Registro</h2>
+        <div> <input type="name" class="form-control" placeholder="Nombre" required></div>
+        <div> <input type="lastname" class="form-control" placeholder="Apellido" required></div>
+	<div> <input type="email" class="form-control" placeholder="Correo electrónico" required></div>
+        <div> <input type="password" class="form-control" placeholder="Contrasena" required></div>
+	<div> <input type="telephone" class="form-control" placeholder="Teléfono" required></div>
+        <div> <input type="adress" class="form-control" placeholder="Dirección" required></div>
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
+      </form>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+ 
+  <script type="text/javascript">
+    Parse.initialize("RMuozbhB3lnNorUhxDk6ViyxfI5JWlZf2JscUHpZ", "ry3g6ToqTzkhAJVGMNSbFoLtYFy7nBZVvBKr5idC");
+  </script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="assets/js/docs.min.js"></script>
+</body>
+
+</html>

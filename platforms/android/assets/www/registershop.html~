@@ -1,0 +1,91 @@
+<!doctype html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <title>TECCloud-POS App</title>
+	<!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+    <link href="css/signin.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+
+      <form class="form">
+        <h2 class="form">Registro de tienda</h2>
+        <div class="form-group"> 
+	  <input id="name" class="form-control" placeholder="Nombre" required autofocus> </input>
+	</div>
+        <div class="form-group"> 
+	  <input id="adress" class="form-control" placeholder="Ubicación" required autofocus> </input>
+	</div>
+	<div class="form-group"> 
+	  <input id="telephone" class="form-control" placeholder="Teléfono" required autofocus> </input>
+	</div>
+        <div class="form-group"> 
+	  <input id="password" class="form-control" placeholder="Contrasena" required autofocus> </input>
+	</div>
+      </form>
+      <div class="form-group">
+        <button onclick='guardar();' class="btn btn-lg btn-primary btn-block" type="default" required autofocus>Registrar</button>
+      </div>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+ 
+  <script type="text/javascript">
+    Parse.initialize("RMuozbhB3lnNorUhxDk6ViyxfI5JWlZf2JscUHpZ", "ry3g6ToqTzkhAJVGMNSbFoLtYFy7nBZVvBKr5idC");
+
+    function guardar(){
+            var Shop = Parse.Object.extend("Tienda");
+	    var query = new Parse.Query(Shop);
+	    query.equalTo('nombre',(document.getElementById('name').value));
+	    query.find({ success: function(results) {
+	      if(results.length==0){
+                var Tienda = Parse.Object.extend("Tienda"); 
+                var tienda = new Tienda();
+	        tienda.set('nombre', document.getElementById('name').value);
+                tienda.set('ubicacion', document.getElementById('adress').value);
+                tienda.set('telefono', document.getElementById('telephone').value);
+	        tienda.set('contrasena', document.getElementById('password').value);    
+	        tienda.save(null, {
+		  success: function(shop) {
+		    // Execute any logic that should take place after the object is saved.
+                    location.href="showproducts.html"+shop.id;
+		  },
+		  error: function(shop, error) {
+		    // Execute any logic that should take place if the save fails.
+		    // error is a Parse.Error with an error code and description.
+		    alert('Failed to create new object, with error code: ' + error.description);
+		  }
+		});
+              }
+              else{ alert('Ya existe una tienda con este nombre');}
+            },
+              error: function(results, error) { }
+  	    });       
+    }
+  </script>
+  </script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script src="assets/js/docs.min.js"></script>
+</body>
+
+</html>

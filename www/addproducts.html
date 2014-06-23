@@ -63,30 +63,7 @@
     var sParameterName = sPageURL.split('=');
     var tienda = sParameterName[1];
 
-    function agregar(){
-            
-        var Producto = Parse.Object.extend("Producto"); 
-        var producto = new Producto();
-        producto.set('tiendaid',tienda);
-        producto.set('nombre', document.getElementById('name').value);
-        producto.set('descripcion', document.getElementById('description').value);
-        producto.set('precio', document.getElementById('price').value);
-        producto.set('tipo', document.getElementById('tipo').value);
-        producto.set('cantidad', document.getElementById('cantidad').value); 
-        producto.set('imagen', document.getElementById('foto').src);   
-        producto.save(null, {
-	  success: function(prod) {
-	    // Execute any logic that should take place after the object is saved.
-            location.href="showproducts.html?key="+tienda;
-	  },
-	  error: function(prod, error) {
-	    // Execute any logic that should take place if the save fails.
-	    // error is a Parse.Error with an error code and description.
-	    alert('Failed to create new object, with error code: ' + error.description);
-	  }
-	});
-    }
-
+ 
     var pictureSource;   // picture source
     var destinationType; // sets the format of returned value 
 
@@ -168,6 +145,32 @@
     function onFail(message) {
       alert('Failed because: ' + message);
     }
+
+
+   function agregar(){
+            
+        var Producto = Parse.Object.extend("Producto"); 
+        var producto = new Producto();
+        producto.set('tiendaid',tienda);
+        producto.set('nombre', document.getElementById('name').value);
+        producto.set('descripcion', document.getElementById('description').value);
+        producto.set('precio', parseFloat(document.getElementById('price').value));
+        producto.set('tipo', document.getElementById('tipo').value);
+        producto.set('cantidad', document.getElementById('cantidad').value); 
+        producto.set('imagen', document.getElementById('foto').src);   
+        producto.save(null, {
+	  success: function(prod) {
+	    // Execute any logic that should take place after the object is saved.
+            location.href="showproducts.html?key="+tienda;
+	  },
+	  error: function(prod, error) {
+	    // Execute any logic that should take place if the save fails.
+	    // error is a Parse.Error with an error code and description.
+	    alert('Failed to create new object, with error code: ' + error.description);
+	  }
+	});
+    }
+
 
   </script>
     <!-- Bootstrap core JavaScript

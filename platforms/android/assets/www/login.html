@@ -1,0 +1,163 @@
+<!doctype html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <title>TECCloud-POS App</title>
+	<!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+    <link href="css/signin.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+
+      <form class="form">
+        <h2 class="form">TECCloud-POS</h2>
+        <div class="form-group">
+          <input id="emails" type='text' class="form-control" placeholder="Correo electrónico" required autofocus> </input>
+        </div>
+        <div class="form-group">
+          <input id= "pass" type="password" class="form-control" placeholder="Contrasena" required autofocus> </input>
+        </div>
+        <div class="form-group">
+          <label class="checkbox">
+            <input id='myCheckbox' type="checkbox"> Tienda </input>
+          </label>
+        </div>
+      </form>  
+      
+      <div class="form-group">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick='iniciar();'>Iniciar Sesión</button>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick='registrar();'>Registrarse</button>
+      </div>
+      <div class="form-group">
+        <label id='mensaje'> </label>
+      </div>
+    
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+ 
+  <script type="text/javascript">
+    Parse.initialize("RMuozbhB3lnNorUhxDk6ViyxfI5JWlZf2JscUHpZ", "ry3g6ToqTzkhAJVGMNSbFoLtYFy7nBZVvBKr5idC");
+    
+    function iniciar() {
+	var checkbox = document.getElementById ("myCheckbox");
+      	if(checkbox.checked){
+          var shopid = "sinid";
+          var Tienda = Parse.Object.extend("Tienda");
+	  var query = new Parse.Query(Tienda);
+	  query.find({
+ 	    success: function(result) {
+              var estado = 'noshop';
+              var emailcomp = document.getElementById('emails').value;
+              var passwdcomp = document.getElementById('pass').value;
+              for (var j = 0; j < result.length; j++) {
+		var object = result[j];
+                var email = object.get('nombre');
+                var passwd = object.get('contrasena');
+		if(email == emailcomp){
+		  if(passwd == passwdcomp){
+                    estado='encontrado';
+                    shopid=object.id;
+                    //location.href="showproducts.html";
+                  }
+ 		  else{
+                    estado = 'nopasswd';
+		    break;
+                  }
+                }
+              }
+              if(estado=="noshop"){
+                alert('La tienda no exite, registrese ahora');
+              }
+              else if (estado == "encontrado"){
+                location.href="showproducts.html?key="+shopid;
+              }
+              else {
+                alert("La contraseña no válida");
+              }
+	    },
+            error: function(error) {
+              $(".error").show();
+ 	    }
+          }); 
+    		
+	}
+	else{
+          var personalid = "sinid";
+          var Usuarios = Parse.Object.extend("Usuario");
+          var querys = new Parse.Query(Usuarios);
+	  querys.find({
+ 	    success: function(result) {
+              //alert('entro');
+              var estado = "nouser";
+              var emailcomp = document.getElementById('emails').value;
+              var passwdcomp = document.getElementById('pass').value;
+              for (var j = 0; j < result.length; j++) {
+		var object = result[j];
+                var email = object.get('email');
+                //alert(emailcomp);
+                var passwd = object.get('contrasena');
+		if(email == emailcomp){
+                  alert(emailcomp);
+		  if(passwd == passwdcomp){
+                    estado="encontrado";
+                    personalid=object.id;
+                    alert(estado);
+                  }
+ 		  else{
+                    estado = "malpasswd";
+                  }
+                }
+              }
+              if(estado=="nouser"){
+                alert('El usuario no exite, registrese ahora');
+              }
+              else if (estado == "encontrado"){
+                location.href="shop.html?key="+personalid;
+              }
+              else {
+                alert("La contraseña no válida");
+              }
+	    },
+            error: function(error) {
+              $(".error").show();
+ 	    }
+          });
+	}
+     }
+    function registrar() {
+	var checkbox = document.getElementById ("myCheckbox");
+      	if(checkbox.checked){
+    		location.href="registershop.html";
+	}
+	else{
+		location.href="registerclient.html";
+	}
+     }	
+  </script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script src="assets/js/docs.min.js"></script>
+</body>
+
+</html>

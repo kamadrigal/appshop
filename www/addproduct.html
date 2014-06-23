@@ -1,0 +1,201 @@
+<!doctype html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <title>My Minifigure App</title>
+	<!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+    <link href="css/inicio.css" rel="stylesheet">
+</head>
+
+<body>
+      <div class="navbar-wrapper">
+        <div class="container">
+
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html">Minifigures</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="form.html">Crear</a></li>
+		<li class="active"><a href="search.html">Buscar</a></li>
+                </li>
+              </ul>
+	      
+            </div>
+          </div>
+        </div>
+	<div id="minifigures"></div>
+      </div>
+    </div>
+    <div class="container">	
+      <div class="minifigur">
+	<div class="form-group">
+	  <input id= "name" type="text" class="form-control" placeholder="Nombre" required autofocus>
+	</div>
+	<div class="form-group">
+	  <input id= "description" type="text" class="form-control" placeholder="Descripcion" required>
+	</div>
+	<div class="form-group">
+	  <input id= "price" type="text" class="form-control" placeholder="Precio" required autofocus>
+	</div>
+	<div class="form-group">
+	  <input id= "much" type="text" class="form-control" placeholder="Cantidad" required autofocus>
+	</div>
+	<div class="form-group">
+	  <input id= "typess" type="text" class="form-control" placeholder="Tipo" required autofocus>
+	</div>
+	<div class="form-group">
+	  <button type="default" class="btn btn-default" onclick="getPhoto(pictureSource.PHOTOLIBRARY);" required autofocus>Tomar foto <i class="glyphicon glyphicon-camera"></i></button><br>
+	</div>
+	<div class="form-group">
+	  <img id= "foto" class="featurette-image img-responsive" data-src="holder.js/200x200/auto" alt="Generic placeholder image" src=''></img>
+	</div>
+	<div class="form-group">
+	  <button id= "salvar" type="default" class="btn btn-default" required autofocus>Agregar</button><br>
+	</div>
+ 	
+		
+      </div>
+  </div>
+ 
+  <script type="text/javascript">
+    Parse.initialize("RMuozbhB3lnNorUhxDk6ViyxfI5JWlZf2JscUHpZ", "ry3g6ToqTzkhAJVGMNSbFoLtYFy7nBZVvBKr5idC");
+    var next = 1;
+    var sPageURL = location.search.substring(1);
+    var sParameterName = sPageURL.split('=');
+    var tienda = sParameterName[1];
+    
+    document.getElementById("salvar").onclick = function(){
+        var Producto = Parse.Object.extend("Producto"); 
+        var producto = new Producto();
+        producto.set('tiendaid',tienda);
+        producto.set('nombre', document.getElementById('name').value);
+        producto.set('descripcion', document.getElementById('description').value);
+        producto.set('precio', document.getElementById('price').value);
+        producto.set('tipo', document.getElementById('typess').value);
+        producto.set('cantidad', document.getElementById('much').value); 
+        //producto.set('imagen', document.getElementById('foto').src);   
+        producto.save(null, {
+	  success: function(prod) {
+	    // Execute any logic that should take place after the object is saved.
+            location.href="showproducts.html?key="+tienda;
+	  },
+	  error: function(prod, error) {
+	    // Execute any logic that should take place if the save fails.
+	    // error is a Parse.Error with an error code and description.
+	    alert('Failed to create new object, with error code: ' + error.description);
+	  }
+	});
+		
+    };
+
+    var pictureSource;   // picture source
+    var destinationType; // sets the format of returned value 
+
+    // Wait for PhoneGap to connect with the device
+    //
+    document.addEventListener("deviceready",onDeviceReady,false);
+
+    // PhoneGap is ready to be used!
+    //
+    function onDeviceReady() {
+        pictureSource=navigator.camera.PictureSourceType;
+        destinationType=navigator.camera.DestinationType;
+    }
+
+    // Called when a photo is successfully retrieved
+    //
+    function onPhotoDataSuccess(imageData) {
+      // Uncomment to view the base64 encoded image data
+      // console.log(imageData);
+
+      // Get image handle
+      //
+      var smallImage = document.getElementById('foto');
+
+      // Unhide image elements
+      //
+      smallImage.style.display = 'block';
+
+      // Show the captured photo
+      // The inline CSS rules are used to resize the image
+      //
+      smallImage.src = "data:image/jpeg;base64," + imageData;
+    }
+ 
+    // Called when a photo is successfully retrieved
+    //
+    function onPhotoURISuccess(imageURI) {
+      // Uncomment to view the image file URI 
+      // console.log(idPhoto);
+      // Get image handle
+      //
+      var largeImage = document.getElementById('foto');
+
+      // Unhide image elements
+      //
+      largeImage.style.display = 'block';
+
+      // Show the captured photo
+      // The inline CSS rules are used to resize the image
+      //
+      largeImage.src = "data:image/jpeg;base64," + imageURI;
+    }
+
+    // A button will call this function
+    //
+    function capturePhoto() {
+      // Take picture using device camera and retrieve image as base64-encoded string
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50 });
+    }
+
+    // A button will call this function
+    //
+    function capturePhotoEdit() {
+      // Take picture using device camera, allow edit, and retrieve image as base64-encoded string  
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true }); 
+    }
+
+    // A button will call this function
+    //
+    function getPhoto(source) {
+      // Retrieve image file location from specified source
+      navigator.camera.getPicture( onPhotoURISuccess, onFail, { quality: 50, 
+        destinationType: destinationType.DATA_URL,
+        sourceType: source });
+    }
+
+    // Called if something bad happens.
+    // 
+    function onFail(message) {
+      alert('Failed because: ' + message);
+    }
+
+  
+  </script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>		
+    <script src="assets/js/docs.min.js"></script>
+</body>
+
+</html>
