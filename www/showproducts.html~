@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
-    <title>My Minifigure App</title>
+    <title>TECCloud-POS App</title>
 	<!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="css/reset.css">
@@ -32,7 +32,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Inicio</a></li>
-            <li><a href="#about">Añadir</a></li>
+            <li><a href="addproducts.html">Añadir</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -50,7 +50,7 @@
             <h1>TECCloud-POS</h1>
             <p>Catálogo de ropa</p>
           </div>
-          <div class="container">
+          <div class="container" id="productos">
             <div class="col-6 col-sm-6 col-lg-4">
               <h2>Producto 1</h2>
               <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
@@ -97,6 +97,41 @@
  
   <script type="text/javascript">
     Parse.initialize("RMuozbhB3lnNorUhxDk6ViyxfI5JWlZf2JscUHpZ", "ry3g6ToqTzkhAJVGMNSbFoLtYFy7nBZVvBKr5idC");
+    
+    var sPageURL = location.search.substring(1);
+    var sParameterName = sPageURL.split('=');
+    var tienda = sParameterName[1];
+
+    var Producto = Parse.Object.extend("Producto");
+    var container = document.getElementById("productos");
+    var query = new Parse.Query(Producto);
+	query.find({
+ 	success: function(results) {
+    // Do something with the returned Parse.Object values
+		
+    		for (var i = 0; i < results.length; i++) {
+			var object = results[i];
+			var newdiv = document.createElement('div');
+			if(object.get("tiendaid")==tienda){
+			   newdiv.innerHTML = '<div class="col-6 col-sm-6 col-lg-4">'+
+                               '<h2>'+object.get('nombre')+'</h2>'+
+                               '<img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image" src="'+object.get('imagenprueba').url()+'"></img>'+
+                               '<p><a class="btn btn-primary" role="button" href="showproductclient.html?key='+object.id+'">Ver más &raquo;</a></p>'+
+                             '</div><!--/span-->';
+                        }
+			container.appendChild(newdiv);
+			
+    		}
+		
+		
+  	},
+
+ 	 error: function(error) {
+    // error is an instance of Parse.Error.
+	$(".error").show();
+ 	 }
+    }); 
+
   </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->

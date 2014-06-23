@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
-    <title>My Minifigure App</title>
+    <title>TECCloud-POS App</title>
 	<!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="css/reset.css">
@@ -50,38 +50,11 @@
             <h1>TECCloud-POS</h1>
             <p>Catálogo de ropa</p>
           </div>
-          <div class="row">
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Producto 1</h2>
-              <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-              <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Producto 2</h2>
-              <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-              <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Producto 3</h2>
-              <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-              <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Producto 4</h2>
-              <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-              <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Producto 5</h2>
-              <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-              <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Producto 6</h2>
-              <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-              <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
+          
+          <div class="row" id="productos">
+ 
           </div><!--/row-->
+          
         </div><!--/span-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
@@ -113,6 +86,35 @@
     var sPageURL = location.search.substring(1);
     var sParameterName = sPageURL.split('=');
     var usuario = sParameterName[1];
+
+    var Producto = Parse.Object.extend("Producto");
+    var container = document.getElementById("productos");
+    var query = new Parse.Query(Producto);
+	query.find({
+ 	success: function(results) {
+    // Do something with the returned Parse.Object values
+		
+    		for (var i = 0; i < results.length; i++) {
+			var object = results[i];
+			var newdiv = document.createElement('div');
+			
+			newdiv.innerHTML = '<div class="col-6 col-sm-6 col-lg-4">'+
+                                             '<h2>'+object.get('nombre')+'</h2>'+
+                                             '<img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image" src="'+object.get('imagenprueba').url()+'"></img>'+
+                                             '<p><a class="btn btn-primary" role="button" href="showproductclient.html?key='+object.id+','+usuario+'">Ver más &raquo;</a></p>'+
+                                           '</div><!--/span-->';
+			container.appendChild(newdiv);
+			
+    		}
+		
+		
+  	},
+
+ 	 error: function(error) {
+    // error is an instance of Parse.Error.
+	$(".error").show();
+ 	 }
+    }); 
 
   </script>
     <!-- Bootstrap core JavaScript
