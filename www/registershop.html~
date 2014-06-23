@@ -49,16 +49,20 @@
     Parse.initialize("RMuozbhB3lnNorUhxDk6ViyxfI5JWlZf2JscUHpZ", "ry3g6ToqTzkhAJVGMNSbFoLtYFy7nBZVvBKr5idC");
 
     function guardar(){
-            var Tienda = Parse.Object.extend("Tienda"); 
-            var tienda = new Tienda();
-	    tienda.set('nombre', document.getElementById('name').value);
-            tienda.set('direccion', document.getElementById('adress').value);
-            tienda.set('telefono', document.getElementById('telephone').value);
-	    tienda.set('contrasena', document.getElementById('password').value);    
-	    tienda.save(null, {
+            var Shop = Parse.Object.extend("Tienda");
+	    var query = new Parse.Query(Shop);
+	    query.equalTo('nombre',(document.getElementById('name').value));
+	    query.find({ success: function(results) {
+	      if(results.length==0){
+                var Tienda = Parse.Object.extend("Tienda"); 
+                var tienda = new Tienda();
+	        tienda.set('nombre', document.getElementById('name').value);
+                tienda.set('ubicacion', document.getElementById('adress').value);
+                tienda.set('telefono', document.getElementById('telephone').value);
+	        tienda.set('contrasena', document.getElementById('password').value);    
+	        tienda.save(null, {
 		  success: function(shop) {
 		    // Execute any logic that should take place after the object is saved.
-		    alert('New object created with objectId: ' + shop.id);
                     href.location="showproducts.html";
 		  },
 		  error: function(shop, error) {
@@ -67,7 +71,11 @@
 		    alert('Failed to create new object, with error code: ' + error.description);
 		  }
 		});
-            
+              }
+              else{ alert('Ya existe un usuario con este correo electronico');}
+            },
+              error: function(results, error) { }
+  	    });       
     }
   </script>
   </script>

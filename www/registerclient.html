@@ -58,19 +58,24 @@
     Parse.initialize("RMuozbhB3lnNorUhxDk6ViyxfI5JWlZf2JscUHpZ", "ry3g6ToqTzkhAJVGMNSbFoLtYFy7nBZVvBKr5idC");
     
     function guardar(){
-            var Usuario = Parse.Object.extend("Usuario"); 
-            var usuario = new Usuario();
-	    usuario.set('nombre', document.getElementById('name').value);
-	    usuario.set('apellido', document.getElementById('lastname').value);
-	    usuario.set('cedula', document.getElementById('personalid').value);
-	    usuario.set('email', document.getElementById('email').value);
-	    usuario.set('contrasena', document.getElementById('password').value);    
-	    usuario.set('telefono', document.getElementById('telephone').value);
-	    usuario.set('direccion', document.getElementById('adress').value);
-	    usuario.save(null, {
+            var User = Parse.Object.extend("Usuario");
+	    var query = new Parse.Query(User);
+	    query.equalTo('email',(document.getElementById('email').value));
+	    query.find({ success: function(results) {
+	      if(results.length==0){
+                var Usuario = Parse.Object.extend("Usuario"); 
+                var usuario = new Usuario();
+	        usuario.set('nombre', document.getElementById('name').value);
+	        usuario.set('apellido', document.getElementById('lastname').value);
+	        usuario.set('cedula', document.getElementById('personalid').value);
+	        usuario.set('email', document.getElementById('email').value);
+	        usuario.set('contrasena', document.getElementById('password').value);    
+	        usuario.set('telefono', document.getElementById('telephone').value);
+	        usuario.set('direccion', document.getElementById('adress').value);
+	        usuario.save(null, {
 		  success: function(user) {
 		    // Execute any logic that should take place after the object is saved.
-		    alert('New object created with objectId: ' + user.id);
+                    href.location="showproducts.html";
 		  },
 		  error: function(user, error) {
 		    // Execute any logic that should take place if the save fails.
@@ -78,6 +83,12 @@
 		    alert('Failed to create new object, with error code: ' + error.description);
 		  }
 		});
+              }
+              else{ alert('Ya existe un usuario con este correo electronico');}
+            },
+              error: function(results, error) { }
+  	    });
+            
     }
   </script>
     <!-- Bootstrap core JavaScript
