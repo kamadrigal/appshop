@@ -62,7 +62,7 @@
 	  var query = new Parse.Query(Tienda);
 	  query.find({
  	    success: function(result) {
-              var estado = true;
+              var estado = 'noshop';
               var emailcomp = document.getElementById('emails').value;
               var passwdcomp = document.getElementById('pass').value;
               for (var j = 0; j < result.length; j++) {
@@ -71,14 +71,11 @@
                 var passwd = object.get('contrasena');
 		if(email == emailcomp){
 		  if(passwd == passwdcomp){
-                    alert('encontrado');
+                    estado='encontrado';
                     //location.href="showproducts.html";
                   }
  		  else{
-                    var container = document.getElementById("mensaje");
-                    container.appendChild('La contraseña es errónea');
-
-                    estado = false;
+                    estado = 'nopasswd';
 		    break;
                   }
                 }
@@ -100,6 +97,7 @@
     		
 	}
 	else{
+          var personalid = "sinid";
           var Usuarios = Parse.Object.extend("Usuario");
           var querys = new Parse.Query(Usuarios);
 	  querys.find({
@@ -117,6 +115,7 @@
                   alert(emailcomp);
 		  if(passwd == passwdcomp){
                     estado="encontrado";
+                    personalid=object.id;
                     alert(estado);
                   }
  		  else{
@@ -128,7 +127,7 @@
                 alert('El usuario no exite, registrese ahora');
               }
               else if (estado == "encontrado"){
-                location.href="shop.html";
+                location.href="shop.html"+personalid;
               }
               else {
                 alert("La contraseña no válida");

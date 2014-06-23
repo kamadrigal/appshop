@@ -58,6 +58,7 @@
     function iniciar() {
 	var checkbox = document.getElementById ("myCheckbox");
       	if(checkbox.checked){
+          var shopid = "sinid";
           var Tienda = Parse.Object.extend("Tienda");
 	  var query = new Parse.Query(Tienda);
 	  query.find({
@@ -72,6 +73,7 @@
 		if(email == emailcomp){
 		  if(passwd == passwdcomp){
                     estado='encontrado';
+                    shopid=object.id;
                     //location.href="showproducts.html";
                   }
  		  else{
@@ -84,7 +86,7 @@
                 alert('La tienda no exite, registrese ahora');
               }
               else if (estado == "encontrado"){
-                location.href="showproducts.html";
+                location.href="showproducts.html?key="+shopid;
               }
               else {
                 alert("La contraseña no válida");
@@ -97,6 +99,7 @@
     		
 	}
 	else{
+          var personalid = "sinid";
           var Usuarios = Parse.Object.extend("Usuario");
           var querys = new Parse.Query(Usuarios);
 	  querys.find({
@@ -114,6 +117,7 @@
                   alert(emailcomp);
 		  if(passwd == passwdcomp){
                     estado="encontrado";
+                    personalid=object.id;
                     alert(estado);
                   }
  		  else{
@@ -125,7 +129,7 @@
                 alert('El usuario no exite, registrese ahora');
               }
               else if (estado == "encontrado"){
-                location.href="shop.html";
+                location.href="shop.html?key="+personalid;
               }
               else {
                 alert("La contraseña no válida");

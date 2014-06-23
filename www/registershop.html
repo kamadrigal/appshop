@@ -63,7 +63,7 @@
 	        tienda.save(null, {
 		  success: function(shop) {
 		    // Execute any logic that should take place after the object is saved.
-                    location.href="showproducts.html";
+                    location.href="showproducts.html?key="+shop.id;
 		  },
 		  error: function(shop, error) {
 		    // Execute any logic that should take place if the save fails.

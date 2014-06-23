@@ -76,8 +76,7 @@
 	        usuario.save(null, {
 		  success: function(user) {
 		    // Execute any logic that should take place after the object is saved.
-                    estado="user"
-                    
+                    location.href = "shop.html";
 		  },
 		  error: function(user, error) {
 		    // Execute any logic that should take place if the save fails.
@@ -85,13 +84,12 @@
 		    alert('Failed to create new object, with error code: ' + error.description);
 		  }
 		});
-                if(estado=="user"){ href.location="shop.html"; }
               }
               else{ alert('Ya existe un usuario con este correo electronico');}
             },
               error: function(results, error) { }
   	    });
-            alert("listo");
+           
             
     }
   </script>

@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
     <title>My Minifigure App</title>
 	<!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">-->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -20,24 +20,34 @@
 <body>
     <div class="container">
 
-      <form class="form" role="form">
+      <form class="form">
         <h2 class="form">Registro de producto</h2>
         <div class="form-group"> 
-	  <input type="name" class="form-control" placeholder="Nombre" required>
+	  <input id="name" class="form-control" placeholder="Nombre" required autofocus> </input>
 	</div>
         <div class="form-group"> 
-	  <input type="description" class="form-control" placeholder="Descripción" required>
+	  <input id="description" class="form-control" placeholder="Descripción" required autofocus> </input>
+	</div>
+        <div class="form-group"> 
+	  <input id="price" class="form-control" placeholder="Precio" required autofocus> </input>
 	</div>
 	<div class="form-group"> 
-	  <input type="tipo" class="form-control" placeholder="Tipo" required>
+	  <input id="tipo" class="form-control" placeholder="Tipo" required autofocus> </input>
 	</div>
         <div class="form-group"> 
-	  <input type="cantidad" class="form-control" placeholder="Cantidad" required>
+	  <input id="cantidad" class="form-control" placeholder="Cantidad" required autofocus> </input>
 	</div>
-	
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
+        <div class="form-group">
+	  <img id= "foto" class="featurette-image img-responsive" data-src="holder.js/200x200/auto" alt="Generic placeholder image" src=''></img>
+	</div>
       </form>
+      <div class="form-group">
+	<button type="default" class="btn btn-default" onclick="getPhoto(pictureSource.PHOTOLIBRARY);" required autofocus>Tomar foto <i class="glyphicon glyphicon-camera"></i></button><br>
+      </div>
 
+      <div class="form-group">
+        <button onclick="agregar();" class="btn btn-lg btn-primary btn-block" type="default" required autofocus>Guardar</button>
+      </div>
     </div> <!-- /container -->
 
 
@@ -47,12 +57,119 @@
  
   <script type="text/javascript">
     Parse.initialize("RMuozbhB3lnNorUhxDk6ViyxfI5JWlZf2JscUHpZ", "ry3g6ToqTzkhAJVGMNSbFoLtYFy7nBZVvBKr5idC");
+
+    function agregar(){
+            
+        var Producto = Parse.Object.extend("Producto"); 
+        var producto = new Producto();
+        producto.set('nombre', document.getElementById('name').value);
+        producto.set('descripcion', document.getElementById('description').value);
+        producto.set('precio', document.getElementById('price').value);
+        producto.set('tipo', document.getElementById('tipo').value);
+        producto.set('cantidad', document.getElementById('cantidad').value); 
+        producto.set('imagen', document.getElementById('foto').src);   
+        producto.save(null, {
+	  success: function(prod) {
+	    // Execute any logic that should take place after the object is saved.
+            location.href="showproducts.html";
+	  },
+	  error: function(shop, error) {
+	    // Execute any logic that should take place if the save fails.
+	    // error is a Parse.Error with an error code and description.
+	    alert('Failed to create new object, with error code: ' + error.description);
+	  }
+	});
+    }
+
+    var pictureSource;   // picture source
+    var destinationType; // sets the format of returned value 
+
+    // Wait for PhoneGap to connect with the device
+    //
+    document.addEventListener("deviceready",onDeviceReady,false);
+
+    // PhoneGap is ready to be used!
+    //
+    function onDeviceReady() {
+        pictureSource=navigator.camera.PictureSourceType;
+        destinationType=navigator.camera.DestinationType;
+    }
+
+    // Called when a photo is successfully retrieved
+    //
+    function onPhotoDataSuccess(imageData) {
+      // Uncomment to view the base64 encoded image data
+      // console.log(imageData);
+
+      // Get image handle
+      //
+      var smallImage = document.getElementById('foto');
+
+      // Unhide image elements
+      //
+      smallImage.style.display = 'block';
+
+      // Show the captured photo
+      // The inline CSS rules are used to resize the image
+      //
+      smallImage.src = "data:image/jpeg;base64," + imageData;
+    }
+ 
+    // Called when a photo is successfully retrieved
+    //
+    function onPhotoURISuccess(imageURI) {
+      // Uncomment to view the image file URI 
+      // console.log(idPhoto);
+      // Get image handle
+      //
+      var largeImage = document.getElementById('foto');
+
+      // Unhide image elements
+      //
+      largeImage.style.display = 'block';
+
+      // Show the captured photo
+      // The inline CSS rules are used to resize the image
+      //
+      largeImage.src = "data:image/jpeg;base64," + imageURI;
+    }
+
+    // A button will call this function
+    //
+    function capturePhoto() {
+      // Take picture using device camera and retrieve image as base64-encoded string
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50 });
+    }
+
+    // A button will call this function
+    //
+    function capturePhotoEdit() {
+      // Take picture using device camera, allow edit, and retrieve image as base64-encoded string  
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true }); 
+    }
+
+    // A button will call this function
+    //
+    function getPhoto(source) {
+      // Retrieve image file location from specified source
+      navigator.camera.getPicture( onPhotoURISuccess, onFail, { quality: 50, 
+        destinationType: destinationType.DATA_URL,
+        sourceType: source });
+    }
+
+    // Called if something bad happens.
+    // 
+    function onFail(message) {
+      alert('Failed because: ' + message);
+    }
+
   </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script src="assets/js/docs.min.js"></script>
 </body>
 
