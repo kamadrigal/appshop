@@ -72,7 +72,7 @@
 		  }
 		});
               }
-              else{ alert('Ya existe un usuario con este correo electronico');}
+              else{ alert('Ya existe una tienda con este nombre');}
             },
               error: function(results, error) { }
   	    });       
