@@ -96,6 +96,7 @@
     function inicio(){ 
        location.href = "shop.html?key="+usuario; 
     }
+    function ver(){ location.href="showrecipe.html?key="+usuario;}
     function agregado(){
       var Recibo = Parse.Object.extend("UsuarioProducto");
       recibo=new Recibo();
@@ -108,8 +109,9 @@
 
         }
       });
-    }
-
+    } 
+    
+    </script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

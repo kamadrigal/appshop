@@ -129,6 +129,18 @@
 
      function sendMail() {
        cuerpo=cuerpo+"Total: ¢"+total+"\n";
+
+       var Factura = Parse.Object.extend("Recibo");
+       var factura = new Factura();
+       factura.set("cliente",usuario);
+       factura.set("cuerpo",cuerpo);
+       factura.save(null,{success: function(fact){
+                           alert("Factura guardada")
+                         }, 
+                         error: function(error){
+                         }
+                    });
+       
        var link = "mailto:karlamv93@gmail.com"
              + "?cc=karlamv93@gmail.com"
              + "&subject=" + escape(asunto)

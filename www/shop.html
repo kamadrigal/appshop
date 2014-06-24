@@ -32,7 +32,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Inicio</a></li>
-            <li><a href="#about">Cuentas</a></li>
+            <li><a onclick="ver();">Cuentas</a></li>
             <li><a onclick="cerrar();">Cerrar Sesión</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
@@ -155,7 +155,7 @@
     }                 
     
     function cerrar(){ location.href="login.html";}
-
+    function ver(){ location.href="showrecipe.html?key="+usuario;}
   </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->

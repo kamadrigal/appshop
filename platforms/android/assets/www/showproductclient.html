@@ -33,7 +33,7 @@
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
              <li class="active"><a onclick="inicio();">Inicio</a></li>
-             <li><a href="#about">Cuentas</a></li>
+             <li><a onclick="ver();">Cuentas</a></li>
              <li><a onclick="agregado();"><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
               </ul>
             </div>
@@ -96,6 +96,7 @@
     function inicio(){ 
        location.href = "shop.html?key="+usuario; 
     }
+    function ver(){ location.href="showrecipe.html?key="+usuario;}
     function agregado(){
       var Recibo = Parse.Object.extend("UsuarioProducto");
       recibo=new Recibo();
