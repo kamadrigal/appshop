@@ -31,7 +31,7 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Inicio</a></li>
+            <li class="active"><a onclick="inicio();">Inicio</a></li>
             <li><a href="#about">Cuentas</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
@@ -67,8 +67,33 @@
 
     var asunto="Factura TECCloud-POS";
     var cuerpo="Factura TECCloud-POS\n";
-    var correo="";
+  
+    var currentDate = new Date();
+    
     document.getElementById("totales").value=total;
+
+    var Usuario=Parse.Object.extend("Usuario");
+    
+                var query = new Parse.Query(Usuario);
+		query.equalTo("objectId", usuario);
+		query.find({success: function(result) {
+		     
+                         var object = result[0];
+                         cuerpo = cuerpo + object.get("nombre")+" "+object.get("apellido")+'\n';
+                         cuerpo = cuerpo + 'Fecha: '+currentDate.getDate()+"/"+(currentDate.getMonth() + 1)+"/"+currentDate.getFullYear()+'\n';
+                         var newdiv = document.createElement('div');
+                         newdiv.innerHTML = '<p>'+object.get("nombre")+" "+object.get("apellido")+'</p>'+
+                                            '<p> Fecha: '+currentDate.getDate()+"/"+(currentDate.getMonth() + 1)+"/"+currentDate.getFullYear()+'</p>';
+                         mostrar.appendChild(newdiv); 
+		     
+                  
+		 },
+		 error: function(error) {
+		 // error is an instance of Parse.Error.
+		   $(".error").show();
+		 } 
+		});
+
     var Recibo = Parse.Object.extend("UsuarioProducto");
                 var querys = new Parse.Query(Recibo);
 		querys.equalTo("usuarioId", usuario);
@@ -97,37 +122,10 @@
 		   $(".error").show();
 		 } 
 		});
+
      var newdiv = document.createElement('div');
      newdiv.innerHTML = '<p>TOTAL: ₡'+total+'</p>';
      talvez.appendChild(newdiv);
-     
-        function onLoad() {
-           document.addEventListener("deviceready", onDeviceReady, false);
-	}
-
-	// PhoneGap is ready
-	//
-	function onDeviceReady() {
-	    // Empty
-	}
-
-	// alert dialog dismissed
-	function alertDismissed() {
-	    // do something
-	}
-
-	// Show a custom alert
-	//
-	function doEmail() {//cuerpo=cuerpo+"Total"+total+"\n";
-	    window.plugin.email.open({
-    to:      ['karlamv93@gmail.com'],
-    cc:      ['karlamv93@gmail.com'],
-    bcc:     ['karlamv93@gmail.com'],
-    subject: 'Greetings',
-    body:    'How are you? Nice greetings from Leipzig'
-});
-
-	}
 
      function sendMail() {
        cuerpo=cuerpo+"Total: ¢"+total+"\n";
@@ -138,7 +136,11 @@
         ;
 
        window.location.href = link;
-}
+     }
+
+     function inicio(){ 
+       location.href = "shop.html?key="+usuario; 
+     }
 </script>
 
 <link rel="stylesheet" href="style.css" />
