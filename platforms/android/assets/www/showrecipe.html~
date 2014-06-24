@@ -63,7 +63,7 @@
                  var object = result[i];
                  
 		   var newdiv = document.createElement('div');
-		   newdiv.innerHTML = '<p>ID Factura: '+object.id+'</p>'+'<p>'+object.get("cuerpo")+'</p>'+'<br></br>';
+		   newdiv.innerHTML = '<p>ID Factura: '+object.id+'</p>'+'<PRE>'+object.get("cuerpo")+'</PRE>'+'<hr class="featurette-divider"></hr>';
 		   mostrar.appendChild(newdiv);   
 	      
 	     }
