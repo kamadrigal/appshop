@@ -110,36 +110,7 @@
       });
     }
 
-    function agregar(){
-       var Usuario = Parse.Object.extend("Usuario");
-       var querys = new Parse.Query(Usuario);
-       querys.find({success: function(result){
-		for(var i=0; i<result.length; i++){
-                  var object = result[i];
-                  if((object.id)==usuario){ 
-                    var lista = object.get('productos');
-                    lista.add('"'+producto+'"');
-                    object.set("productos", lista);
-                    object.save(null, {
-		      success: function(user) {
-		      // Execute any logic that should take place after the object is saved.
-                       location.href = "shop.html?key="+user.id;
-		      },
-		      error: function(user, error) {
-		       // Execute any logic that should take place if the save fails.
-		       // error is a Parse.Error with an error code and description.
-		        alert('Failed to create new object, with error code: ' + error.description);
-		      }
-		    });
-                  }
-                }
-             }, 
-             error: function(error){
-              $(".error").show();
-             }
-       });
-    }
-  </script>
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

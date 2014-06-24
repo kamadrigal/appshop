@@ -92,6 +92,13 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/de.appplant.cordova.plugin.email-composer/www/email_composer.js",
+        "id": "de.appplant.cordova.plugin.email-composer.EmailComposer",
+        "clobbers": [
+            "plugin.email"
+        ]
+    },
+    {
         "file": "plugins/org.apache.cordova.file/www/DirectoryEntry.js",
         "id": "org.apache.cordova.file.DirectoryEntry",
         "clobbers": [
@@ -244,6 +251,7 @@ module.exports.metadata =
     "org.apache.cordova.camera": "0.3.1-dev",
     "org.apache.cordova.media-capture": "0.3.2-dev",
     "org.apache.cordova.media": "0.2.12-dev",
+    "de.appplant.cordova.plugin.email-composer": "0.8.2dev",
     "org.apache.cordova.file": "1.2.0"
 }
 // BOTTOM OF METADATA

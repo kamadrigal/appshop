@@ -23,6 +23,10 @@
                         {
                             "xml": "<feature name=\"Media\"><param name=\"android-package\" value=\"org.apache.cordova.media.AudioHandler\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"EmailComposer\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.emailcomposer.EmailComposer\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -50,6 +54,12 @@
                             "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
                             "count": 1
                         }
+                    ],
+                    "/manifest/application": [
+                        {
+                            "xml": "<provider android:authorities=\"cr.tec.diseno.plugin.emailcomposer.attachmentprovider\" android:name=\"de.appplant.cordova.plugin.emailcomposer.AttachmentProvider\"></provider>",
+                            "count": 1
+                        }
                     ]
                 }
             }
@@ -63,6 +73,9 @@
             "PACKAGE_NAME": "cr.tec.diseno"
         },
         "org.apache.cordova.media": {
+            "PACKAGE_NAME": "cr.tec.diseno"
+        },
+        "de.appplant.cordova.plugin.email-composer": {
             "PACKAGE_NAME": "cr.tec.diseno"
         }
     },

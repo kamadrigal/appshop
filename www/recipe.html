@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
-    <title>My Minifigure App</title>
+    <title>TECCloud-POS App</title>
 	<!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="css/reset.css">
@@ -49,6 +49,17 @@
  
   <script type="text/javascript">
     Parse.initialize("RMuozbhB3lnNorUhxDk6ViyxfI5JWlZf2JscUHpZ", "ry3g6ToqTzkhAJVGMNSbFoLtYFy7nBZVvBKr5idC");
+
+    var sPageURL = location.search.substring(1);
+    var sParameterName = sPageURL.split('=');
+    var ambos = sParameterName[1];
+    var sParameterBoth = ambos.split(',');
+    var usuario = sParameterBoth[0];
+    var total = sParameterBoth[1];
+
+    var asunto="Factura TECCloud-POS";
+    var cuerpo="";
+    var 
   </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
