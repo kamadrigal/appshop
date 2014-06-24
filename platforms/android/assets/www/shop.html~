@@ -104,7 +104,7 @@
 			newdiv.innerHTML = '<div class="col-6 col-sm-6 col-lg-4">'+
                                              '<h2 onclick="agregar();">'+object.get('nombre')+'</h2>'+
                                              
-                                             '<img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image" src="'+object.get('imagenprueba').url()+'"></img>'+
+                                             '<img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image" src="'+object.get('imagen').url()+'"></img>'+
                                              '<p><a class="btn btn-primary" role="button" href="showproductclient.html?key='+object.id+','+usuario+'">Ver más &raquo;</a></p>'+
                                            '</div><!--/span-->';
 			container.appendChild(newdiv);
@@ -155,7 +155,7 @@
     }                 
     
     function cerrar(){ location.href="login.html";}
-    function cerrar(){ location.href="showrecipe.html?key="+usuario;}
+    function ver(){ location.href="showrecipe.html?key="+usuario;}
   </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->

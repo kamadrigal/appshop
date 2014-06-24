@@ -32,8 +32,8 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="showproducts.html">Inicio</a></li>
-            <li><a href="addproducts.html">Añadir</a></li>
+            <li class="active"><a onclick = "inicio();">Inicio</a></li>
+            <li><a onclick = "agregar();">Añadir</a></li>
               </ul>
             </div>
           </div>
