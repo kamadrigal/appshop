@@ -63,10 +63,13 @@
 /home/karla/appshop/platforms/android/assets/www/assets/ico/apple-touch-icon-144-precomposed.png \
 /home/karla/appshop/platforms/android/assets/www/assets/ico/favicon.ico \
 /home/karla/appshop/platforms/android/assets/www/assets/ico/search.ico \
+/home/karla/appshop/platforms/android/assets/www/plugins/de.appplant.cordova.plugin.email-composer \
 /home/karla/appshop/platforms/android/assets/www/plugins/org.apache.cordova.media \
 /home/karla/appshop/platforms/android/assets/www/plugins/org.apache.cordova.media-capture \
 /home/karla/appshop/platforms/android/assets/www/plugins/org.apache.cordova.camera \
 /home/karla/appshop/platforms/android/assets/www/plugins/org.apache.cordova.file \
+/home/karla/appshop/platforms/android/assets/www/plugins/de.appplant.cordova.plugin.email-composer/www \
+/home/karla/appshop/platforms/android/assets/www/plugins/de.appplant.cordova.plugin.email-composer/www/email_composer.js \
 /home/karla/appshop/platforms/android/assets/www/plugins/org.apache.cordova.media/www \
 /home/karla/appshop/platforms/android/assets/www/plugins/org.apache.cordova.media/www/MediaError.js \
 /home/karla/appshop/platforms/android/assets/www/plugins/org.apache.cordova.media/www/Media.js \

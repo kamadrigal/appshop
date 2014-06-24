@@ -154,7 +154,7 @@
         producto.set('tiendaid',tienda);
         producto.set('nombre', document.getElementById('name').value);
         producto.set('descripcion', document.getElementById('description').value);
-        producto.set('precio', document.getElementById('price').value);
+        producto.set('precio', parseFloat(document.getElementById('price').value));
         producto.set('tipo', document.getElementById('tipo').value);
         producto.set('cantidad', document.getElementById('cantidad').value); 
         producto.set('imagen', document.getElementById('foto').src);   

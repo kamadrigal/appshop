@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
-    <title>My Minifigure App</title>
+    <title>TECCloud-POS App</title>
 	<!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="css/reset.css">
@@ -38,17 +38,110 @@
       </div><!-- /.container -->
     </div><!-- /.navbar -->
 
-    <div class="container">
-
- 
+    <div class="container" id="tax">
+      <h2 class="featurette-heading">Factura</h2>
+      <label class="featurette-heading" id="totales"></label>
     </div><!--/.container-->
-
+    <div class="container">
+      <p id="hola"></p>
+    </div><!--/.container-->
+    <div class="container">     
+      <p><a onclick="sendMail(); return false;" class="btn btn-primary" role="button"> Enviar al correo &raquo;</a></p>
+    </div><!--/.container-->
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
  
   <script type="text/javascript">
     Parse.initialize("RMuozbhB3lnNorUhxDk6ViyxfI5JWlZf2JscUHpZ", "ry3g6ToqTzkhAJVGMNSbFoLtYFy7nBZVvBKr5idC");
+
+    var sPageURL = location.search.substring(1);
+    var sParameterName = sPageURL.split('=');
+    var ambos = sParameterName[1];
+    var sParameterBoth = ambos.split(',');
+    var usuario = sParameterBoth[0];
+    var total = sParameterBoth[1];
+
+    var mostrar = document.getElementById("tax");
+    var talvez = document.getElementById("hola");
+
+    var asunto="Factura TECCloud-POS";
+    var cuerpo="Factura TECCloud-POS\n";
+    var correo="";
+    document.getElementById("totales").value=total;
+    var Recibo = Parse.Object.extend("UsuarioProducto");
+                var querys = new Parse.Query(Recibo);
+		querys.equalTo("usuarioId", usuario);
+		querys.find({success: function(result) {
+		     for (var i = 0; i < result.length; i++){
+                         var object = result[i];
+                         var agregar = object.get("productoId");
+                         var Product = Parse.Object.extend("Producto");
+                         var queries = new Parse.Query(Product);
+                         queries.equalTo("objectId", agregar);
+                         queries.find({success: function(prod) {
+                                           cuerpo=cuerpo+(prod[0].get("nombre")+' ¢'+prod[0].get("precio"))+'\n';
+                                           var newdiv = document.createElement('div');
+                                           newdiv.innerHTML = '<p>'+prod[0].get("nombre")+' ₡'+prod[0].get("precio")+'</p>';
+                                           mostrar.appendChild(newdiv);   
+                                      }, error: function(error) {
+				      // error is an instance of Parse.Error.
+				           $(".error").show();
+				         } 
+                         });
+		     }
+                  
+		 },
+		 error: function(error) {
+		 // error is an instance of Parse.Error.
+		   $(".error").show();
+		 } 
+		});
+     var newdiv = document.createElement('div');
+     newdiv.innerHTML = '<p>TOTAL: ₡'+total+'</p>';
+     talvez.appendChild(newdiv);
+     
+        function onLoad() {
+           document.addEventListener("deviceready", onDeviceReady, false);
+	}
+
+	// PhoneGap is ready
+	//
+	function onDeviceReady() {
+	    // Empty
+	}
+
+	// alert dialog dismissed
+	function alertDismissed() {
+	    // do something
+	}
+
+	// Show a custom alert
+	//
+	function doEmail() {//cuerpo=cuerpo+"Total"+total+"\n";
+	    window.plugin.email.open({
+    to:      ['karlamv93@gmail.com'],
+    cc:      ['karlamv93@gmail.com'],
+    bcc:     ['karlamv93@gmail.com'],
+    subject: 'Greetings',
+    body:    'How are you? Nice greetings from Leipzig'
+});
+
+	}
+
+         function sendMail() {
+       cuerpo=cuerpo+"Total: ¢"+total+"\n";
+    var link = "mailto:karlamv93@gmail.com"
+             + "?cc=karlamv93@gmail.com"
+             + "&subject=" + escape(asunto)
+             + "&body=" + escape(cuerpo)
+    ;
+
+    window.location.href = link;
+}
+</script>
+
+<link rel="stylesheet" href="style.css" />
   </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->

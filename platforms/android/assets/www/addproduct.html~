@@ -88,8 +88,8 @@
         producto.set('nombre', document.getElementById('name').value);
         producto.set('descripcion', document.getElementById('description').value);
         producto.set('precio', document.getElementById('price').value);
-        producto.set('tipo', document.getElementById('tipo').value);
-        producto.set('cantidad', document.getElementById('cantidad').value); 
+        producto.set('tipo', document.getElementById('typess').value);
+        producto.set('cantidad', document.getElementById('much').value); 
         producto.set('imagen', document.getElementById('foto').src);   
         producto.save(null, {
 	  success: function(prod) {

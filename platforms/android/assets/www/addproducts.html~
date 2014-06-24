@@ -46,11 +46,11 @@
 	<button type="default" class="btn btn-default" onclick="getPhoto(pictureSource.PHOTOLIBRARY);" required autofocus>Tomar foto <i class="glyphicon glyphicon-camera"></i></button><br>
       </div>
 
-      
-    </div> <!-- /container -->
-    <div class="form-group">
+      <div class="form-group">
         <button onclick="agregar();" class="btn btn-lg btn-primary btn-block" type="default" required autofocus>Guardar</button>
       </div>
+    </div> <!-- /container -->
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

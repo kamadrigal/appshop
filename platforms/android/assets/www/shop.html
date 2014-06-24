@@ -58,14 +58,13 @@
         </div><!--/span-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-          <div class="jumbotron">
+          <div class="jumbotron" id = "agregados">
 	    <h2>Carrito</h2>
-            <p>Producto 1 </p>
-            <p>Producto 3 </p>
-            <p>Producto 5 </p>
-            <p>Producto 6 </p>
+            <p><a onclick="comprar();" class="btn btn-primary" role="button"> Comprar &raquo;</a></p>
           </div>
         </div><!--/span-->
+        <div class=container id="totales">
+        </div>
       </div><!--/row-->
 
       <hr>
@@ -86,9 +85,12 @@
     var sPageURL = location.search.substring(1);
     var sParameterName = sPageURL.split('=');
     var usuario = sParameterName[1];
+    
+    var total = 0;
 
     var Producto = Parse.Object.extend("Producto");
     var container = document.getElementById("productos");
+    var contain = document.getElementById("agregados");
     var query = new Parse.Query(Producto);
 	query.find({
  	success: function(results) {
@@ -99,13 +101,44 @@
 			var newdiv = document.createElement('div');
 			
 			newdiv.innerHTML = '<div class="col-6 col-sm-6 col-lg-4">'+
-                                             '<h2>'+object.get('nombre')+'</h2>'+
+                                             '<h2 onclick="agregar();">'+object.get('nombre')+'</h2>'+
+                                             
                                              '<img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image" src="'+object.get('imagenprueba').url()+'"></img>'+
                                              '<p><a class="btn btn-primary" role="button" href="showproductclient.html?key='+object.id+','+usuario+'">Ver más &raquo;</a></p>'+
                                            '</div><!--/span-->';
 			container.appendChild(newdiv);
+                        
 			
     		}
+                var Recibo = Parse.Object.extend("UsuarioProducto");
+                var querys = new Parse.Query(Recibo);
+		querys.equalTo("usuarioId", usuario);
+		querys.find({success: function(result) {
+		     for (var i = 0; i < result.length; i++){
+                         var object = result[i];
+                         var agregar = object.get("productoId");
+                         var Product = Parse.Object.extend("Producto");
+                         var queries = new Parse.Query(Product);
+                         queries.equalTo("objectId", agregar);
+                         queries.find({success: function(prod) {
+                                           total = total + Number(prod[0].get("precio"));
+                                           var newdiv = document.createElement('div');
+                                           newdiv.innerHTML = '<p>'+prod[0].get("nombre")+' ₡'+prod[0].get("precio")+'</p>';
+                                           contain.appendChild(newdiv);   
+                                      }, error: function(error) {
+				      // error is an instance of Parse.Error.
+				           $(".error").show();
+				         } 
+                         });
+                         
+                     }
+                  
+		 },
+		 error: function(error) {
+		 // error is an instance of Parse.Error.
+		   $(".error").show();
+		 } 
+		});
 		
 		
   	},
@@ -115,6 +148,12 @@
 	$(".error").show();
  	 }
     }); 
+                                           
+    function comprar(){
+      location.href="recipe.html?key="+usuario+","+total;
+    }                 
+    
+    
 
   </script>
     <!-- Bootstrap core JavaScript
