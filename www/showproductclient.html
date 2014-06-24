@@ -34,7 +34,7 @@
             <ul class="nav navbar-nav">
              <li class="active"><a onclick="inicio();">Inicio</a></li>
              <li><a href="#about">Cuentas</a></li>
-             <li><a onclick="agregar();"><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
+             <li><a onclick="agregado();"><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
               </ul>
             </div>
           </div>
@@ -74,7 +74,6 @@
 						     '<div class="col-md-7">'+
 							'<h2 class="featurette-heading">'+object.get('nombre')+'<span class="text-muted">'+" $"+object.get('precio')+'</span></h2>'+
 							'<p class="lead">'+object.get('descripcion')+'</p>'+
-                                                        '<p><a onclick="agregar();" class="btn btn-primary" role="button">Agregar al carrito &raquo;</a></p>'+
 						     '</div>'+
                                                      '<div class="col-md-5">'+
 						       '<img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image" src='+object.get('imagenprueba').url()+'></img>'
@@ -97,37 +96,21 @@
     function inicio(){ 
        location.href = "shop.html?key="+usuario; 
     }
+    function agregado(){
+      var Recibo = Parse.Object.extend("UsuarioProducto");
+      recibo=new Recibo();
+      recibo.set("usuarioId", usuario);
+      recibo.set("productoId", producto);
+      recibo.save(null, { success: function(recipe){
+            alert("agregado");
+        },
+        error: function(error){
 
-    function agregar(){
-       var Usuario = Parse.Object.extend("Usuario");
-       var querys = new Parse.Query(Usuario);
-       querys.find({success: function(result){
-		for(var i=0; i<result.length; i++){
-                  var object = result[i];
-                  if((object.id)==usuario){
-                    var lista = object.get('productos');
-                    lista.add('"'+producto+'"');
-                    object.set("productos", lista);
-                    object.save(null, {
-		      success: function(user) {
-		      // Execute any logic that should take place after the object is saved.
-                       location.href = "shop.html?key="+user.id;
-		      },
-		      error: function(user, error) {
-		       // Execute any logic that should take place if the save fails.
-		       // error is a Parse.Error with an error code and description.
-		        alert('Failed to create new object, with error code: ' + error.description);
-		      }
-		    });
-                  }
-                }
-             }, 
-             error: function(error){
-              $(".error").show();
-             }
-       });
+        }
+      });
     }
-  </script>
+
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
