@@ -80,7 +80,7 @@
                          var queries = new Parse.Query(Product);
                          queries.equalTo("objectId", agregar);
                          queries.find({success: function(prod) {
-                                           cuerpo=cuerpo+(prod[0].get("nombre")+' ₡'+prod[0].get("precio"))+'\n';
+                                           cuerpo=cuerpo+(prod[0].get("nombre")+' ¢'+prod[0].get("precio"))+'\n';
                                            var newdiv = document.createElement('div');
                                            newdiv.innerHTML = '<p>'+prod[0].get("nombre")+' ₡'+prod[0].get("precio")+'</p>';
                                            mostrar.appendChild(newdiv);   
@@ -100,44 +100,16 @@
      var newdiv = document.createElement('div');
      newdiv.innerHTML = '<p>TOTAL: ₡'+total+'</p>';
      talvez.appendChild(newdiv);
-     
-        function onLoad() {
-           document.addEventListener("deviceready", onDeviceReady, false);
-	}
 
-	// PhoneGap is ready
-	//
-	function onDeviceReady() {
-	    // Empty
-	}
-
-	// alert dialog dismissed
-	function alertDismissed() {
-	    // do something
-	}
-
-	// Show a custom alert
-	//
-	function doEmail() {//cuerpo=cuerpo+"Total"+total+"\n";
-	    window.plugin.email.open({
-    to:      ['karlamv93@gmail.com'],
-    cc:      ['karlamv93@gmail.com'],
-    bcc:     ['karlamv93@gmail.com'],
-    subject: 'Greetings',
-    body:    'How are you? Nice greetings from Leipzig'
-});
-
-	}
-
-         function sendMail() {
-       cuerpo=cuerpo+"Total"+total+"\n";
-    var link = "mailto:karlamv93@gmail.com"
+     function sendMail() {
+       cuerpo=cuerpo+"Total: ¢"+total+"\n";
+       var link = "mailto:karlamv93@gmail.com"
              + "?cc=karlamv93@gmail.com"
              + "&subject=" + escape(asunto)
              + "&body=" + escape(cuerpo)
-    ;
+        ;
 
-    window.location.href = link;
+       window.location.href = link;
 }
 </script>
 

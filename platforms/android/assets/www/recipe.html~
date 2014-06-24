@@ -46,7 +46,7 @@
       <p id="hola"></p>
     </div><!--/.container-->
     <div class="container">     
-      <p><body onload="onLoad()"><a href="#" onclick="doEmail(); return false;" class="btn btn-primary" role="button"> Enviar al correo &raquo;</a></p>
+      <p><a onclick="sendMail(); return false;" class="btn btn-primary" role="button"> Enviar al correo &raquo;</a></p>
     </div><!--/.container-->
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -80,7 +80,7 @@
                          var queries = new Parse.Query(Product);
                          queries.equalTo("objectId", agregar);
                          queries.find({success: function(prod) {
-                                           cuerpo=cuerpo+(prod[0].get("nombre")+' ₡'+prod[0].get("precio"))+'\n';
+                                           cuerpo=cuerpo+(prod[0].get("nombre")+' ¢'+prod[0].get("precio"))+'\n';
                                            var newdiv = document.createElement('div');
                                            newdiv.innerHTML = '<p>'+prod[0].get("nombre")+' ₡'+prod[0].get("precio")+'</p>';
                                            mostrar.appendChild(newdiv);   
@@ -128,6 +128,17 @@
 });
 
 	}
+
+     function sendMail() {
+       cuerpo=cuerpo+"Total: ¢"+total+"\n";
+       var link = "mailto:karlamv93@gmail.com"
+             + "?cc=karlamv93@gmail.com"
+             + "&subject=" + escape(asunto)
+             + "&body=" + escape(cuerpo)
+        ;
+
+       window.location.href = link;
+}
 </script>
 
 <link rel="stylesheet" href="style.css" />

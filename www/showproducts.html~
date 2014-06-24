@@ -33,6 +33,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a onclick = "inicio();">Inicio</a></li>
             <li><a onclick = "agregar();">Añadir</a></li>
+            <li><a onclick="cerrar();">Cerrar Sesión</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -105,7 +106,7 @@
     
     function inicio(){ location.href = "showproducts.html?key="+tienda; }
     function agregar(){ location.href = "addproducts.html?key="+tienda; }
-
+    function cerrar(){ location.href="login.html";}
   </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->

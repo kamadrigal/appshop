@@ -33,6 +33,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Inicio</a></li>
             <li><a href="#about">Cuentas</a></li>
+            <li><a onclick="cerrar();">Cerrar Sesión</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -153,7 +154,7 @@
       location.href="recipe.html?key="+usuario+","+total;
     }                 
     
-    
+    function cerrar(){ location.href="login.html";}
 
   </script>
     <!-- Bootstrap core JavaScript

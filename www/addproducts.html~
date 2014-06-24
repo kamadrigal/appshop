@@ -18,6 +18,26 @@
 </head>
 
 <body>
+     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">TECCloud-POS</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a onclick = "inicio();">Inicio</a></li>
+            <li><a onclick = "agregar();">Añadir</a></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
+
     <div class="container">
 
       <form class="form">
@@ -154,7 +174,7 @@
         producto.set('tiendaid',tienda);
         producto.set('nombre', document.getElementById('name').value);
         producto.set('descripcion', document.getElementById('description').value);
-        producto.set('precio', document.getElementById('price').value);
+        producto.set('precio', parseFloat(document.getElementById('price').value));
         producto.set('tipo', document.getElementById('tipo').value);
         producto.set('cantidad', document.getElementById('cantidad').value); 
         producto.set('imagen', document.getElementById('foto').src);   
@@ -171,7 +191,8 @@
 	});
     }
 
-
+    function inicio(){ location.href = "showproducts.html?key="+tienda; }
+    function agregar(){ location.href = "addproducts.html?key="+tienda; }
   </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->

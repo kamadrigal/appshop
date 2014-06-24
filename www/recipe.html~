@@ -129,15 +129,15 @@
 
 	}
 
-         function sendMail() {
+     function sendMail() {
        cuerpo=cuerpo+"Total: ¢"+total+"\n";
-    var link = "mailto:karlamv93@gmail.com"
+       var link = "mailto:karlamv93@gmail.com"
              + "?cc=karlamv93@gmail.com"
              + "&subject=" + escape(asunto)
              + "&body=" + escape(cuerpo)
-    ;
+        ;
 
-    window.location.href = link;
+       window.location.href = link;
 }
 </script>
 

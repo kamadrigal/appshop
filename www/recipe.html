@@ -100,34 +100,6 @@
      var newdiv = document.createElement('div');
      newdiv.innerHTML = '<p>TOTAL: ₡'+total+'</p>';
      talvez.appendChild(newdiv);
-     
-        function onLoad() {
-           document.addEventListener("deviceready", onDeviceReady, false);
-	}
-
-	// PhoneGap is ready
-	//
-	function onDeviceReady() {
-	    // Empty
-	}
-
-	// alert dialog dismissed
-	function alertDismissed() {
-	    // do something
-	}
-
-	// Show a custom alert
-	//
-	function doEmail() {//cuerpo=cuerpo+"Total"+total+"\n";
-	    window.plugin.email.open({
-    to:      ['karlamv93@gmail.com'],
-    cc:      ['karlamv93@gmail.com'],
-    bcc:     ['karlamv93@gmail.com'],
-    subject: 'Greetings',
-    body:    'How are you? Nice greetings from Leipzig'
-});
-
-	}
 
      function sendMail() {
        cuerpo=cuerpo+"Total: ¢"+total+"\n";

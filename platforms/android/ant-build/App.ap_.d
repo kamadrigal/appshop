@@ -34,7 +34,6 @@
 /home/karla/appshop/platforms/android/assets/www/login.html \
 /home/karla/appshop/platforms/android/assets/www/showproducts.html \
 /home/karla/appshop/platforms/android/assets/www/registershop.html \
-/home/karla/appshop/platforms/android/assets/www/addproduct.html \
 /home/karla/appshop/platforms/android/assets/www/res \
 /home/karla/appshop/platforms/android/assets/www/showrecipe.html \
 /home/karla/appshop/platforms/android/assets/www/assets/img \
